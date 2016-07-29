@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <TableLayout android:id="@+id/TableLayout01"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+            <TableRow android:id="@+id/TableRow01"
+                android:layout_height="wrap_content"
+                android:minWidth="60dp"
+                android:layout_width="wrap_content">
+                <TextView  android:text="type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtType"
+                    android:layout_gravity="center_horizontal"
+                    android:minWidth="100dp" />
+
+                <TextView  android:text="damage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDamage"
+                    android:layout_gravity="center_horizontal"
+                    android:minWidth="80dp" />
+            </TableRow>
+        </TableLayout>
+</LinearLayout>

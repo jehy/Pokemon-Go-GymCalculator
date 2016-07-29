@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Pokemon Weakness Calculator</string>
+    <string name="enter_a_pokemon_you_are_attacking">Enter a pokemon you are attacking</string>
+    <string name="pikachu">pikachu</string>
+    <string name="get_type">Get type</string>
+    <string name="or_choose_pokemon_type_you_are_attacking">Or choose pokemon type you are attacking:</string>
+    <string name="type1">Type1:</string>
+    <string name="has_second_type">Has second type</string>
+    <string name="type_2">Type 2:</string>
+    <string name="compute_damage_to_this_type">Compute damage to this type</string>
+</resources>
