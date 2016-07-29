@@ -8,7 +8,7 @@ go to zehipp0 from reddit and this post: https://www.reddit.com/r/TheSilphRoad/c
 
 #FAQ
 
-##How do you count dual type pokemons
+##How do you count dual type pokemons?
 Exact modifiers are still unknown but I suggested that those are simply multiplied like in other pokemon games.
 
 ##Why isn't this app on google play?
