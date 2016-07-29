@@ -8,6 +8,9 @@ go to zehipp0 from reddit and this post: https://www.reddit.com/r/TheSilphRoad/c
 
 #FAQ
 
+## How do I install it?
+Go to releases and download the newest apk file.
+
 ##How do you count dual type pokemons?
 Exact modifiers are still unknown but I suggested that those are simply multiplied like in other pokemon games.
 
