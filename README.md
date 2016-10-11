@@ -1,4 +1,4 @@
-# Pokemon-Go-Weakness-calculator
+# Pokemon-Go-GymCalculator
 This android application calculates damage for given pokemon or pokemon type from different attack types.
 
 ![Screenshot](https://github.com/jehy/Pokemon-Go-Weakness-calculator/blob/master/screenshot.png?raw=true)
