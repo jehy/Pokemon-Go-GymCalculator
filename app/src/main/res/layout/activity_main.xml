@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fadeScrollbars="false"
@@ -17,16 +18,7 @@
     tools:context="ru.jehy.gymcalculator.MainActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter_a_pokemon_you_are_attacking"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <AutoCompleteTextView
+        <AutoCompleteTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pokemonName"
@@ -84,7 +76,6 @@
         android:id="@+id/checkBox"
         android:enabled="true"
         android:focusable="true"
-        android:layout_centerVertical="true"
         android:layout_below="@+id/defenderType1"
         android:layout_alignLeft="@+id/defenderType1"
         android:layout_alignStart="@+id/defenderType1"
@@ -137,5 +128,26 @@
         android:layout_below="@+id/computeAttacker"
         />
 
-</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_help"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/floatingActionButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_a_pokemon_you_are_attacking"
+            android:id="@+id/textView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
 </ScrollView>

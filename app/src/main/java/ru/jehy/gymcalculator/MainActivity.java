@@ -1,6 +1,8 @@
 package ru.jehy.gymcalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -60,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, ChartActivity.class);
+                //myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
         Button buttonOne = (Button) findViewById(R.id.computeAttacker);
         buttonOne.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
