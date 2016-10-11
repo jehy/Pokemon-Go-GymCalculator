@@ -1,4 +1,4 @@
-package ru.jehy.pokemonweaknesscalculator;
+package ru.jehy.gymcalculator;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -43,7 +43,6 @@ public class PokeTypeDataAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        convertView = null;
         convertView = mInflater.inflate(R.layout.customgrid,
                 parent, false);
         holder = new ViewHolder();

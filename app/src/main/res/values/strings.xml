@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pokemon Weakness Calculator</string>
+    <string name="app_name">Gym Calculator</string>
     <string name="enter_a_pokemon_you_are_attacking">Enter a pokemon you are attacking</string>
     <string name="pikachu">pikachu</string>
     <string name="get_type">Get type</string>

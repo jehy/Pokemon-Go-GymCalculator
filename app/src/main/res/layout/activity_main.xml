@@ -14,7 +14,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ru.jehy.pokemonweaknesscalculator.MainActivity">
+    tools:context="ru.jehy.gymcalculator.MainActivity">
 
 
     <TextView
@@ -124,7 +124,7 @@
         android:layout_alignParentStart="true" />
 
 
-    <ru.jehy.pokemonweaknesscalculator.MyGridView
+    <ru.jehy.gymcalculator.MyGridView
         android:id="@+id/damageTable"
         android:stretchMode="columnWidth"
         android:cacheColorHint="#00000000"

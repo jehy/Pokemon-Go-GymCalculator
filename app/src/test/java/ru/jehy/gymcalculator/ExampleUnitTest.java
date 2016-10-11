@@ -1,4 +1,4 @@
-package ru.jehy.pokemonweaknesscalculator;
+package ru.jehy.gymcalculator;
 
 import org.junit.Test;
 

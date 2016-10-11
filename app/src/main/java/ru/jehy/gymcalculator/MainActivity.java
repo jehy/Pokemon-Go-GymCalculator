@@ -1,4 +1,4 @@
-package ru.jehy.pokemonweaknesscalculator;
+package ru.jehy.gymcalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -82,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
         String jsonString = writer.toString();
         Gson gson = new Gson();
         pokemons = gson.fromJson(jsonString, Pokemon[].class);
-        List<String> pokeList = new ArrayList<String>();
+        List<String> pokeList = new ArrayList<>();
         for (Pokemon pokemon : pokemons) {
             //Log.d("PokeLog", pokemons[i].name);
             //Log.d("PokeLog", Arrays.toString(pokemons[i].types));
             pokeList.add(pokemon.name);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, pokeList);
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.pokemonName);
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         //set controls with types
         Spinner s = (Spinner) findViewById(R.id.defenderType1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, pokeTypes);
         s.setAdapter(adapter);
         s = (Spinner) findViewById(R.id.defenderType2);
