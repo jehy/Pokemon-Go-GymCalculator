@@ -1,4 +1,4 @@
-package ru.jehy.pokemonweaknesscalculator;
+package ru.jehy.gymcalculator;
 
 /**
  * Created by Jehy on 29.07.2016.
