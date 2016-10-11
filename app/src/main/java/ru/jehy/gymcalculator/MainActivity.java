@@ -3,8 +3,6 @@ package ru.jehy.gymcalculator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -14,81 +12,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    double[][] pokeMatrix = {{1, 1, 1, 1, 1, 0.8, 1, 0.8, 0.8, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1.25, 1, 0.8, 0.8, 1, 1.25, 0.8, 0.8, 1.25, 1, 1, 1, 1, 0.8, 1.25, 1, 1.25, 0.8},
-            {1, 1.25, 1, 1, 1, 0.8, 1.25, 1, 0.8, 1, 1, 1.25, 0.8, 1, 1, 1, 1, 1},
-            {1, 1, 1, 0.8, 0.8, 0.8, 1, 0.8, 0.8, 1, 1, 1.25, 1, 1, 1, 1, 1, 1.25},
-            {1, 1, 0.8, 1.25, 1, 1.25, 0.8, 1, 1.25, 1.25, 1, 0.8, 1.25, 1, 1, 1, 1, 1},
-            {1, 0.8, 1.25, 1, 0.8, 1, 1.25, 1, 0.8, 1.25, 1, 1, 1, 1, 1.25, 1, 1, 1},
-            {1, 0.8, 0.8, 0.8, 1, 1, 1, 0.8, 0.8, 0.8, 1, 1.25, 1, 1.25, 1, 1, 1.25, 0.8},
-            {0.8, 1, 1, 1, 1, 1, 1, 1.25, 1, 1, 1, 1, 1, 1.25, 1, 1, 0.8, 1},
-            {1, 1, 1, 1, 1, 1.25, 1, 1, 0.8, 0.8, 0.8, 1, 0.8, 1, 1.25, 1, 1, 1.25},
-            {1, 1, 1, 1, 1, 0.8, 1.25, 1, 1.25, 0.8, 0.8, 1.25, 1, 1, 1.25, 0.8, 1, 1},
-            {1, 1, 1, 1, 1.25, 1.25, 1, 1, 1, 1.25, 0.8, 0.8, 1, 1, 1, 0.8, 1, 1},
-            {1, 1, 0.8, 0.8, 1.25, 1.25, 0.8, 1, 0.8, 0.8, 1.25, 0.8, 1, 1, 1, 0.8, 1, 1},
-            {1, 1, 1.25, 1, 0.8, 1, 1, 1, 1, 1, 1.25, 0.8, 0.8, 1, 1, 0.8, 1, 1},
-            {1, 1.25, 1, 1.25, 1, 1, 1, 1, 0.8, 1, 1, 1, 1, 0.8, 1, 1, 0.8, 1},
-            {1, 1, 1.25, 1, 1.25, 1, 1, 1, 0.8, 0.8, 0.8, 1.25, 1, 1, 0.8, 1.25, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 0.8, 1, 1, 1, 1, 1, 1, 1.25, 1, 0.8},
-            {1, 0.8, 1, 1, 1, 1, 1, 1.25, 1, 1, 1, 1, 1, 1.25, 1, 1, 0.8, 0.8},
-            {1, 1.25, 1, 0.8, 1, 1, 1, 1, 0.8, 0.8, 1, 1, 1, 1, 1, 1.25, 1.25, 1}};
-    double[][] pokeMatrixTransposed = trasposeMatrix(pokeMatrix);
-    String[] pokeTypes = {"NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BUG", "GHOST",
-            "STEEL", "FIRE", "WATER", "GRASS", "ELECTRIC", "PSYCHIC", "ICE", "DRAGON", "DARK", "FAIRY"};
-    Pokemon[] pokemons = null;
-
-    public static double[][] trasposeMatrix(double[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-
-        double[][] trasposedMatrix = new double[n][m];
-
-        for (int x = 0; x < n; x++) {
-            for (int y = 0; y < m; y++) {
-                trasposedMatrix[x][y] = matrix[y][x];
-            }
-        }
-
-        return trasposedMatrix;
-    }
 
     private void updatePokeList() throws IOException {
-        InputStream is = getResources().openRawResource(R.raw.pokemons);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[1024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
-            }
-        } finally {
-            is.close();
-        }
-        String jsonString = writer.toString();
-        Gson gson = new Gson();
-        pokemons = gson.fromJson(jsonString, Pokemon[].class);
-        List<String> pokeList = new ArrayList<>();
-        for (Pokemon pokemon : pokemons) {
-            //Log.d("PokeLog", pokemons[i].name);
-            //Log.d("PokeLog", Arrays.toString(pokemons[i].types));
-            pokeList.add(pokemon.name);
-        }
-
+        List<String> pokeList = pokeData.getPokemonsList(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, pokeList);
         AutoCompleteTextView textView = (AutoCompleteTextView)
@@ -117,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         //set controls with types
         Spinner s = (Spinner) findViewById(R.id.defenderType1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, pokeTypes);
+                android.R.layout.simple_spinner_item, pokeData.pokeTypes);
         s.setAdapter(adapter);
         s = (Spinner) findViewById(R.id.defenderType2);
         s.setAdapter(adapter);
@@ -135,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Spinner mySpinner = (Spinner) findViewById(R.id.defenderType1);
                 int type = (int) mySpinner.getSelectedItemId();
-                double[] damage = pokeMatrixTransposed[type].clone();
+                double[] damage = pokeData.pokeMatrixTransposed[type].clone();
                 GridView grid = (GridView) findViewById(R.id.damageTable);
 
 
@@ -143,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 if ((secType).isChecked()) {
                     Spinner mySpinner2 = (Spinner) findViewById(R.id.defenderType2);
                     int type2 = (int) mySpinner2.getSelectedItemId();
-                    double[] damage2 = pokeMatrixTransposed[type2].clone();
+                    double[] damage2 = pokeData.pokeMatrixTransposed[type2].clone();
                     for (int i = 0; i < damage.length; i++) {
                         damage[i] = Math.rint(100.0 * damage[i] * damage2[i]) / 100.0;
                     }
                 }
-                grid.setAdapter(new PokeTypeDataAdapter(v.getContext(), pokeTypes, damage));
+                grid.setAdapter(new PokeTypeDataAdapter(v.getContext(), pokeData.pokeTypes, damage));
             }
         });
 
@@ -158,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 AutoCompleteTextView pokeName = (AutoCompleteTextView) findViewById(R.id.pokemonName);
                 String name = pokeName.getText().toString().toLowerCase();
-                for (Pokemon pokemon : pokemons) {
+                for (Pokemon pokemon : pokeData.pokemons) {
                     if (pokemon.name.toLowerCase().equals(name)) {
                         Spinner mySpinner = (Spinner) findViewById(R.id.defenderType1);
                         mySpinner.setSelection(getIndex(mySpinner, pokemon.types[0].toUpperCase()));
@@ -176,23 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Toast.makeText(MainActivity.this, "Pokemon not found!",
                         Toast.LENGTH_LONG).show();
-                /*
-                Spinner mySpinner = (Spinner) findViewById(R.id.defenderType1);
-                int type = (int) mySpinner.getSelectedItemId();
-                double[] damage = pokeMatrixTransposed[type];
-                GridView grid = (GridView) findViewById(R.id.damageTable);
-
-
-                CheckBox secType = (CheckBox) findViewById(R.id.checkBox);
-                if ((secType).isChecked()) {
-                    Spinner mySpinner2 = (Spinner) findViewById(R.id.defenderType2);
-                    int type2 = (int) mySpinner2.getSelectedItemId();
-                    double[] damage2 = pokeMatrixTransposed[type2];
-                    for (int i = 0; i < damage.length; i++) {
-                        damage[i] = Math.rint(100.0 * damage[i] * damage2[i]) / 100.0;
-                    }
-                }
-                grid.setAdapter(new PokeTypeDataAdapter(v.getContext(), pokeTypes, damage));*/
             }
         });
 
@@ -203,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //is chkIos checked?
                 if (((CheckBox) v).isChecked()) {
                     TextView t2 = (TextView) findViewById(R.id.textView4);
                     t2.setVisibility(View.VISIBLE);
