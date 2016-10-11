@@ -1,24 +1,30 @@
 package ru.jehy.gymcalculator;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
-
+    int tableViewID=0;
 
     private void updatePokeList() throws IOException {
         List<String> pokeList = pokeData.getPokemonsList(this);
@@ -76,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 Spinner mySpinner = (Spinner) findViewById(R.id.defenderType1);
                 int type = (int) mySpinner.getSelectedItemId();
                 double[] damage = pokeData.pokeMatrixTransposed[type].clone();
-                GridView grid = (GridView) findViewById(R.id.damageTable);
+                //GridView grid = (GridView) findViewById(R.id.damageTable);
 
 
                 CheckBox secType = (CheckBox) findViewById(R.id.checkBox);
@@ -88,13 +94,68 @@ public class MainActivity extends AppCompatActivity {
                         damage[i] = Math.rint(100.0 * damage[i] * damage2[i]) / 100.0;
                     }
                 }
-                grid.setAdapter(new PokeTypeDataAdapter(v.getContext(), pokeData.pokeTypes, damage));
-            }
-        });
+                //grid.setAdapter(new PokeTypeDataAdapter(v.getContext(), pokeData.pokeTypes, damage));
 
-        Button getTypeBtn = (Button) findViewById(R.id.getType);
-        getTypeBtn.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
+                RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.mainRootView);
+                if(tableViewID!=0)
+                {
+                    View oldDmgTable=findViewById(tableViewID);
+                    if(oldDmgTable!=null)
+                        rootLayout.removeView(oldDmgTable);
+
+                }
+                TableLayout dmgTable = new TableLayout(MainActivity.this);
+                TableRow tbrow = new TableRow(MainActivity.this);
+                TextView tv1 = new TextView(MainActivity.this);
+                tv1.setText("Attack type");
+                tv1.setPadding(100, 10, 10, 10);
+                tbrow.addView(tv1);
+                tv1 = new TextView(MainActivity.this);
+                tv1.setText("Damage multiplier");
+                tv1.setPadding(100, 10, 10, 10);
+                tbrow.addView(tv1);
+
+                for (int i = 0; i < pokeData.pokeTypes.length; i++) {
+                    tbrow = new TableRow(MainActivity.this);
+                    tv1 = new TextView(MainActivity.this);
+                    tv1.setText(pokeData.pokeTypes[i]);
+                    tv1.setPadding(100, 10, 10, 10);
+                    tbrow.addView(tv1);
+                    tv1 = new TextView(MainActivity.this);
+                    tv1.setText(String.valueOf(damage[i]));
+                    tv1.setPadding(100, 10, 10, 10);
+                    if (damage[i] < 1)
+                        tv1.setBackgroundColor(Color.RED); // set default RED color as background color
+                    if (damage[i] > 1)
+                        tv1.setBackgroundColor(Color.GREEN); // set default RED color as background color
+                    tbrow.addView(tv1);
+                    dmgTable.addView(tbrow);
+                }
+
+
+                RelativeLayout.LayoutParams l = new RelativeLayout.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT,
+                        Toolbar.LayoutParams.WRAP_CONTENT);
+
+                l.addRule(RelativeLayout.BELOW, R.id.computeAttacker);
+
+
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    tableViewID=Utils.generateViewId();
+                 else
+                    tableViewID=View.generateViewId();
+
+                dmgTable.setId(tableViewID);
+                rootLayout.addView(dmgTable, l);
+
+            }}
+
+            );
+
+            Button getTypeBtn = (Button) findViewById(R.id.getType);
+            getTypeBtn.setOnClickListener(new Button.OnClickListener()
+
+            {
+                public void onClick (View v){
 
                 AutoCompleteTextView pokeName = (AutoCompleteTextView) findViewById(R.id.pokemonName);
                 String name = pokeName.getText().toString().toLowerCase();
@@ -117,15 +178,19 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Pokemon not found!",
                         Toast.LENGTH_LONG).show();
             }
-        });
+            }
+
+            );
 
 
-        CheckBox secType = (CheckBox) findViewById(R.id.checkBox);
+            CheckBox secType = (CheckBox) findViewById(R.id.checkBox);
 
-        secType.setOnClickListener(new View.OnClickListener() {
+            secType.setOnClickListener(new View.OnClickListener()
 
-            @Override
-            public void onClick(View v) {
+            {
+
+                @Override
+                public void onClick (View v){
                 if (((CheckBox) v).isChecked()) {
                     TextView t2 = (TextView) findViewById(R.id.textView4);
                     t2.setVisibility(View.VISIBLE);
@@ -139,6 +204,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        });
+            }
+
+            );
+        }
     }
-}
