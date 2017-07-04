@@ -73,10 +73,20 @@ public class ChartActivity extends AppCompatActivity {
                 tv1 = new TextView(this);
                 tv1.setText(String.valueOf(pokeData.pokeMatrix[i][j]));
                 tv1.setPadding(50, 10, 10, 10);
+                /*
                 if (pokeData.pokeMatrix[i][j] > 1)
                     tv1.setBackgroundColor(Color.GREEN);
                 else if (pokeData.pokeMatrix[i][j] < 1)
-                    tv1.setBackgroundColor(Color.RED);
+                    tv1.setBackgroundColor(Color.RED);*/
+                if (pokeData.pokeMatrix[i][j] < 0.7)
+                    tv1.setBackgroundColor(Color.rgb(176, 0, 0));
+                else if (pokeData.pokeMatrix[i][j] < 1)
+                    tv1.setBackgroundColor(Color.rgb(255, 36, 0));
+                else if (pokeData.pokeMatrix[i][j] > 1.4)
+                    tv1.setBackgroundColor(Color.rgb(0, 255, 0));
+                else if (pokeData.pokeMatrix[i][j] > 1)
+                    tv1.setBackgroundColor(Color.rgb(167, 252, 0));
+
                 tbrow.addView(tv1);
             }
             tbrow.setOnClickListener(new View.OnClickListener() {
