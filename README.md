@@ -1,4 +1,8 @@
 # Pokemon-Go-GymCalculator
+
+[![Build Status](https://travis-ci.org/jehy/Pokemon-Go-GymCalculator.svg?branch=master)](https://travis-ci.org/jehy/Pokemon-Go-GymCalculator)
+[![Github All Releases](https://img.shields.io/github/downloads/jehy/Pokemon-Go-GymCalculator/total.svg)](https://github.com/jehy/Pokemon-Go-GymCalculator/releases)
+
 This android application calculates damage for given pokemon or pokemon type from different attack types.
 
 ![Screenshot](https://github.com/jehy/Pokemon-Go-GymCalculator/blob/master/screenshot.jpg?raw=true)
