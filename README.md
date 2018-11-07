@@ -1,4 +1,4 @@
-# Pokemon-Go-GymCalculator
+# Pokemon Go Gym Calculator
 
 [![Build Status](https://travis-ci.org/jehy/Pokemon-Go-GymCalculator.svg?branch=master)](https://travis-ci.org/jehy/Pokemon-Go-GymCalculator)
 [![Github All Releases](https://img.shields.io/github/downloads/jehy/Pokemon-Go-GymCalculator/total.svg)](https://github.com/jehy/Pokemon-Go-GymCalculator/releases)
