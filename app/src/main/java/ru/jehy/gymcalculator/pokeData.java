@@ -1,5 +1,7 @@
 package ru.jehy.gymcalculator;
 
+import android.graphics.Color;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -95,5 +97,18 @@ public class pokeData {
             pokeList.add(pokemon.name);
         }
         return pokeList;
+    }
+
+    public static int getColor(double damage)
+    {
+        if (damage < 0.6)
+            return Color.rgb(176, 0, 0);
+        if (damage < 1)
+            return Color.rgb(255, 36, 0);
+        if (damage >= 1.6)
+            return Color.rgb(0, 255, 0);
+        if (damage > 1)
+            return Color.rgb(167, 252, 0);
+        return Color.rgb(255, 255, 255);
     }
 }

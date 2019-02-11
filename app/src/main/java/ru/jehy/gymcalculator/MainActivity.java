@@ -1,7 +1,6 @@
 package ru.jehy.gymcalculator;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -122,14 +121,7 @@ public class MainActivity extends AppCompatActivity {
                                                  tv1 = new TextView(MainActivity.this);
                                                  tv1.setText(String.valueOf(damage[i]));
                                                  tv1.setPadding(100, 10, 10, 10);
-                                                 if (damage[i] < 0.7)
-                                                     tv1.setBackgroundColor(Color.rgb(176, 0, 0));
-                                                 else if (damage[i] < 1)
-                                                     tv1.setBackgroundColor(Color.rgb(255, 36, 0));
-                                                 else if (damage[i] > 1.4)
-                                                     tv1.setBackgroundColor(Color.rgb(0, 255, 0));
-                                                 else if (damage[i] > 1)
-                                                     tv1.setBackgroundColor(Color.rgb(167, 252, 0));
+                                                 tv1.setBackgroundColor(pokeData.getColor(damage[i]));
                                                  tbrow.addView(tv1);
                                                  dmgTable.addView(tbrow);
                                              }
